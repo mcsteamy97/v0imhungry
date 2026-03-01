@@ -93,7 +93,7 @@ export function RecipeCard({ recipe, onRecipeSelect, showTrendingBadge = false }
 
   return (
     <>
-      <Card className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-romantic/20">
+      <Card className="group glass-card rounded-3xl overflow-hidden apple-press border-border">
         <div className="relative overflow-hidden rounded-t-lg">
           <Image
             src={recipe.image || "/placeholder.svg"}
@@ -109,7 +109,7 @@ export function RecipeCard({ recipe, onRecipeSelect, showTrendingBadge = false }
               className="h-8 w-8 p-0 bg-white/90 hover:bg-white"
               onClick={handleLike}
             >
-              <Heart className={`h-4 w-4 ${isLiked ? "fill-romantic text-romantic" : "text-muted-foreground"}`} />
+              <Heart className={`h-4 w-4 ${isLiked ? "fill-crimson text-crimson" : "text-muted-foreground"}`} />
             </Button>
             <Button
               size="sm"

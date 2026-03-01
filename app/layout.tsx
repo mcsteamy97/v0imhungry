@@ -1,15 +1,9 @@
 import type React from "react"
-import type { Metadata } from "next"
-import { Playfair_Display, Inter } from "next/font/google"
+import type { Metadata, Viewport } from "next"
+import { Playfair_Display } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { Suspense } from "react"
 import "./globals.css"
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-})
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -23,6 +17,10 @@ export const metadata: Metadata = {
   generator: "v0.app",
 }
 
+export const viewport: Viewport = {
+  themeColor: "#C41E3A",
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -30,7 +28,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`font-sans ${inter.variable} ${playfair.variable}`}>
+      <body className={`font-sans ${playfair.variable} antialiased`}>
         <Suspense fallback={null}>{children}</Suspense>
         <Analytics />
       </body>

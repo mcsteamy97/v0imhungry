@@ -52,51 +52,53 @@ export default function HomePage() {
   const filteredRecipes = mealTimeFilter === "all" ? recipes : recipes.filter((r) => r.mealTime === mealTimeFilter)
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-blue-50/30 to-blue-100/20">
+    <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="container mx-auto px-4 py-8">
-        <div className="text-center space-y-4">
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <UtensilsCrossed className="h-10 w-10 text-primary animate-pulse-glow" />
-            <h1 className="text-4xl md:text-6xl font-playfair font-bold text-gradient">I'm Hungry</h1>
-            <ChefHat className="h-10 w-10 text-primary animate-pulse-glow" />
+      <header className="container mx-auto px-6 pt-16 pb-12">
+        <div className="text-center space-y-5 animate-fade-in-up">
+          <div className="flex items-center justify-center gap-4 mb-6">
+            <UtensilsCrossed className="h-9 w-9 text-crimson animate-pulse-glow" />
+            <h1 className="text-5xl md:text-7xl font-playfair font-bold tracking-tight text-gradient">
+              I'm Hungry
+            </h1>
+            <ChefHat className="h-9 w-9 text-crimson animate-pulse-glow" />
           </div>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto text-balance">
-            Discover your perfect meal based on your mood with AI-powered recipe recommendations
+          <p className="text-lg md:text-xl text-muted-foreground max-w-xl mx-auto text-balance leading-relaxed font-light">
+            Discover your perfect meal based on your mood
           </p>
         </div>
       </header>
 
       {/* Main Content */}
-      <main className="container mx-auto px-4 pb-16">
+      <main className="container mx-auto px-6 pb-24 space-y-16">
         {/* Cookbook Section */}
-        <section className="mb-12">
+        <section>
           <CookbookSection />
         </section>
 
         {/* Surprise Meal Section */}
-        <section className="mb-12">
+        <section>
           <SurpriseMeal />
         </section>
 
         {/* World Recipes Section */}
-        <section className="mb-12">
+        <section>
           <WorldRecipes />
         </section>
 
         {/* Mood Selection */}
-        <section className="mb-12">
-          <Card className="glass-effect border-blue-200/40 shadow-xl">
-            <CardHeader className="text-center">
-              <CardTitle className="flex items-center justify-center gap-2 text-2xl font-playfair">
-                <Sparkles className="h-6 w-6 text-primary" />
+        <section>
+          <Card className="glass-card rounded-3xl overflow-hidden">
+            <CardHeader className="text-center px-8 pt-10 pb-6">
+              <CardTitle className="flex items-center justify-center gap-3 text-3xl font-playfair tracking-tight">
+                <Sparkles className="h-6 w-6 text-crimson" />
                 What's Your Culinary Mood?
               </CardTitle>
-              <CardDescription className="text-base">
-                Tell us how you're feeling, and we'll create the perfect meal ideas for you
+              <CardDescription className="text-base mt-2 leading-relaxed">
+                Tell us how you're feeling, and we'll create the perfect meal ideas
               </CardDescription>
             </CardHeader>
-            <CardContent>
+            <CardContent className="px-8 pb-10">
               <MoodSelector onMoodSelect={handleGenerateRecipes} isGenerating={isGenerating} />
             </CardContent>
           </Card>
@@ -104,8 +106,8 @@ export default function HomePage() {
 
         {/* Error State */}
         {error && (
-          <section className="mb-8">
-            <Alert variant="destructive">
+          <section>
+            <Alert variant="destructive" className="rounded-2xl">
               <AlertCircle className="h-4 w-4" />
               <AlertDescription>{error}</AlertDescription>
             </Alert>
@@ -114,9 +116,11 @@ export default function HomePage() {
 
         {/* Recipe Results */}
         {recipes.length > 0 && (
-          <section className="space-y-8">
-            <div className="text-center space-y-4">
-              <h2 className="text-3xl font-playfair font-bold mb-2">Perfect for "{selectedMood}" Moments</h2>
+          <section className="space-y-10">
+            <div className="text-center space-y-5">
+              <h2 className="text-3xl md:text-4xl font-playfair font-bold tracking-tight">
+                Perfect for "{selectedMood}" Moments
+              </h2>
               <p className="text-muted-foreground">Each recipe comes with standard, dairy-free, and vegan variations</p>
 
               <div className="flex items-center justify-center gap-2 flex-wrap">
@@ -124,7 +128,7 @@ export default function HomePage() {
                   variant={mealTimeFilter === "all" ? "default" : "outline"}
                   size="sm"
                   onClick={() => setMealTimeFilter("all")}
-                  className="gap-2"
+                  className="gap-2 rounded-full apple-press"
                 >
                   All Meals
                 </Button>
@@ -132,26 +136,28 @@ export default function HomePage() {
                   variant={mealTimeFilter === "Breakfast" ? "default" : "outline"}
                   size="sm"
                   onClick={() => setMealTimeFilter("Breakfast")}
-                  className="gap-2"
+                  className="gap-2 rounded-full apple-press"
                 >
-                  <Coffee className="h-4 w-4" />🥞 Breakfast
+                  <Coffee className="h-4 w-4" />
+                  Breakfast
                 </Button>
                 <Button
                   variant={mealTimeFilter === "Lunch/Dinner" ? "default" : "outline"}
                   size="sm"
                   onClick={() => setMealTimeFilter("Lunch/Dinner")}
-                  className="gap-2"
+                  className="gap-2 rounded-full apple-press"
                 >
                   <UtensilsCrossed className="h-4 w-4" />
-                  🍽️ Lunch/Dinner
+                  Lunch/Dinner
                 </Button>
                 <Button
                   variant={mealTimeFilter === "Dessert/Snack" ? "default" : "outline"}
                   size="sm"
                   onClick={() => setMealTimeFilter("Dessert/Snack")}
-                  className="gap-2"
+                  className="gap-2 rounded-full apple-press"
                 >
-                  <Cake className="h-4 w-4" />🍰 Dessert
+                  <Cake className="h-4 w-4" />
+                  Dessert
                 </Button>
               </div>
             </div>
@@ -162,9 +168,9 @@ export default function HomePage() {
               if (categoryRecipes.length === 0) return null
 
               return (
-                <div key={category} className="space-y-4">
-                  <h3 className="text-2xl font-playfair font-semibold capitalize flex items-center gap-2">
-                    <ChefHat className="h-6 w-6 text-primary" />
+                <div key={category} className="space-y-6">
+                  <h3 className="text-2xl font-playfair font-semibold capitalize flex items-center gap-3 tracking-tight">
+                    <ChefHat className="h-6 w-6 text-crimson" />
                     {category}
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -189,12 +195,12 @@ export default function HomePage() {
 
         {/* Empty State */}
         {recipes.length === 0 && !isGenerating && !error && (
-          <section className="text-center py-16">
-            <div className="animate-float mb-8">
-              <UtensilsCrossed className="h-24 w-24 text-primary/40 mx-auto" />
+          <section className="text-center py-24">
+            <div className="animate-float mb-10">
+              <UtensilsCrossed className="h-20 w-20 text-crimson/30 mx-auto" />
             </div>
-            <h2 className="text-2xl font-playfair font-bold mb-4">Ready to Find Your Perfect Meal?</h2>
-            <p className="text-muted-foreground max-w-md mx-auto">
+            <h2 className="text-3xl font-playfair font-bold mb-4 tracking-tight">Ready to Find Your Perfect Meal?</h2>
+            <p className="text-muted-foreground max-w-md mx-auto leading-relaxed">
               Select your mood above and let our AI chef create personalized recipes just for you
             </p>
           </section>
@@ -202,11 +208,11 @@ export default function HomePage() {
 
         {/* Loading State */}
         {isGenerating && (
-          <section className="text-center py-16">
-            <div className="animate-spin mb-8">
-              <ChefHat className="h-16 w-16 text-primary mx-auto" />
+          <section className="text-center py-24">
+            <div className="animate-spin mb-10">
+              <ChefHat className="h-14 w-14 text-crimson mx-auto" />
             </div>
-            <h2 className="text-2xl font-playfair font-bold mb-4">Cooking Up Something Special...</h2>
+            <h2 className="text-3xl font-playfair font-bold mb-4 tracking-tight">Cooking Up Something Special...</h2>
             <p className="text-muted-foreground">Our AI chef is crafting the perfect recipes for you</p>
           </section>
         )}

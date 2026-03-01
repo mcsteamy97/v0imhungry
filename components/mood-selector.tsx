@@ -16,12 +16,12 @@ export function MoodSelector({ onMoodSelect, isGenerating }: MoodSelectorProps) 
   const [customMood, setCustomMood] = useState("")
 
   const predefinedMoods = [
-    { label: "Cozy & Warm", icon: Coffee, color: "bg-amber-100 text-amber-800 hover:bg-amber-200" },
-    { label: "Fresh & Light", icon: Sun, color: "bg-green-100 text-green-800 hover:bg-green-200" },
-    { label: "Romantic & Intimate", icon: Heart, color: "bg-romantic text-romantic-foreground hover:bg-romantic/80" },
-    { label: "Quick & Fancy", icon: Sparkles, color: "bg-purple-100 text-purple-800 hover:bg-purple-200" },
-    { label: "Comfort & Indulgent", icon: Moon, color: "bg-blue-100 text-blue-800 hover:bg-blue-200" },
-    { label: "Spicy & Bold", icon: Flame, color: "bg-red-100 text-red-800 hover:bg-red-200" },
+    { label: "Cozy & Warm", icon: Coffee, color: "bg-amber-50 text-amber-900 hover:bg-amber-100 border-amber-200" },
+    { label: "Fresh & Light", icon: Sun, color: "bg-emerald-50 text-emerald-900 hover:bg-emerald-100 border-emerald-200" },
+    { label: "Romantic & Intimate", icon: Heart, color: "bg-crimson-soft text-crimson hover:bg-crimson/10 border-crimson/20" },
+    { label: "Quick & Fancy", icon: Sparkles, color: "bg-violet-50 text-violet-900 hover:bg-violet-100 border-violet-200" },
+    { label: "Comfort & Indulgent", icon: Moon, color: "bg-sky-50 text-sky-900 hover:bg-sky-100 border-sky-200" },
+    { label: "Spicy & Bold", icon: Flame, color: "bg-red-50 text-red-900 hover:bg-red-100 border-red-200" },
   ]
 
   const handleCustomMoodSubmit = (e: React.FormEvent) => {
@@ -44,12 +44,12 @@ export function MoodSelector({ onMoodSelect, isGenerating }: MoodSelectorProps) 
               <Button
                 key={mood.label}
                 variant="outline"
-                className={`h-auto p-4 flex flex-col items-center gap-2 ${mood.color} border-2 transition-all duration-200 hover:scale-105`}
+                className={`h-auto p-5 flex flex-col items-center gap-3 ${mood.color} border rounded-2xl transition-all duration-300 apple-press`}
                 onClick={() => onMoodSelect(mood.label)}
                 disabled={isGenerating}
               >
-                <Icon className="h-6 w-6" />
-                <span className="text-sm font-medium text-center">{mood.label}</span>
+                <Icon className="h-7 w-7" />
+                <span className="text-sm font-medium text-center leading-tight">{mood.label}</span>
               </Button>
             )
           })}

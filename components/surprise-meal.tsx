@@ -52,22 +52,22 @@ export function SurpriseMeal() {
 
   return (
     <>
-      <Card className="border-primary/20 bg-gradient-to-br from-primary/5 to-romantic/10 shadow-lg hover:shadow-xl transition-all">
-        <CardHeader className="text-center">
-          <CardTitle className="flex items-center justify-center gap-2 text-2xl font-playfair">
-            <Sparkles className="h-6 w-6 text-primary animate-pulse" />
+      <Card className="glass-card rounded-3xl overflow-hidden">
+        <CardHeader className="text-center px-8 pt-10 pb-6">
+          <CardTitle className="flex items-center justify-center gap-3 text-2xl font-playfair tracking-tight">
+            <Sparkles className="h-6 w-6 text-crimson" />
             Surprise Me!
           </CardTitle>
-          <CardDescription className="text-base">
-            Feeling adventurous? Let us pick a random romantic dinner recipe for you
+          <CardDescription className="text-base mt-2 leading-relaxed">
+            Feeling adventurous? Let us pick a random dinner recipe for you
           </CardDescription>
         </CardHeader>
-        <CardContent className="flex flex-col items-center gap-4">
+        <CardContent className="flex flex-col items-center gap-4 px-8 pb-10">
           <Button
             onClick={fetchSurpriseMeal}
             disabled={isLoading}
             size="lg"
-            className="bg-gradient-to-r from-primary to-romantic hover:from-primary/90 hover:to-romantic/90 text-white shadow-md hover:shadow-lg transition-all"
+            className="bg-crimson hover:bg-crimson/90 text-primary-foreground rounded-full px-8 apple-press"
           >
             {isLoading ? (
               <>
@@ -86,7 +86,7 @@ export function SurpriseMeal() {
       </Card>
 
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
+        <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto rounded-3xl">
           {meal && (
             <>
               <DialogHeader>
@@ -101,10 +101,10 @@ export function SurpriseMeal() {
 
                 {/* Meal Info */}
                 <div className="flex flex-wrap gap-2">
-                  <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium">
+                  <span className="px-3 py-1 bg-crimson-soft text-crimson rounded-full text-sm font-medium">
                     {meal.category}
                   </span>
-                  <span className="px-3 py-1 bg-romantic/10 text-romantic rounded-full text-sm font-medium">
+                  <span className="px-3 py-1 bg-secondary text-secondary-foreground rounded-full text-sm font-medium">
                     {meal.cuisine} Cuisine
                   </span>
                   {meal.tags.map((tag) => (
@@ -125,13 +125,13 @@ export function SurpriseMeal() {
                 {/* Ingredients */}
                 <div>
                   <h3 className="text-xl font-playfair font-semibold mb-3 flex items-center gap-2">
-                    <ChefHat className="h-5 w-5 text-primary" />
+                    <ChefHat className="h-5 w-5 text-crimson" />
                     Ingredients
                   </h3>
                   <ul className="space-y-2">
                     {convertIngredients(meal.ingredients, measureSystem).map((ingredient, index) => (
                       <li key={index} className="flex items-start gap-2">
-                        <span className="text-romantic mt-1">•</span>
+                        <span className="text-crimson mt-1">&bull;</span>
                         <span>{ingredient}</span>
                       </li>
                     ))}

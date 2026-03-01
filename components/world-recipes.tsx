@@ -57,17 +57,17 @@ export function WorldRecipes() {
 
   return (
     <>
-      <Card className="glass-effect border-blue-200/40 shadow-xl">
-        <CardHeader className="text-center">
-          <CardTitle className="flex items-center justify-center gap-2 text-2xl font-playfair">
-            <Sparkles className="h-6 w-6 text-primary" />
+      <Card className="glass-card rounded-3xl overflow-hidden">
+        <CardHeader className="text-center px-8 pt-10 pb-6">
+          <CardTitle className="flex items-center justify-center gap-3 text-3xl font-playfair tracking-tight">
+            <Sparkles className="h-6 w-6 text-crimson" />
             Explore World Cuisines
           </CardTitle>
-          <CardDescription className="text-base">
-            Discover authentic recipes from around the globe - all free from TheMealDB
+          <CardDescription className="text-base mt-2 leading-relaxed">
+            Discover authentic recipes from around the globe
           </CardDescription>
         </CardHeader>
-        <CardContent className="space-y-6">
+        <CardContent className="space-y-8 px-8 pb-10">
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
             {cuisines.map((cuisine) => (
               <Button
@@ -75,7 +75,7 @@ export function WorldRecipes() {
                 variant={selectedCuisine === cuisine.name ? "default" : "outline"}
                 onClick={() => handleCuisineSelect(cuisine.name)}
                 disabled={isLoading}
-                className="h-auto flex-col gap-2 py-4 glass-button"
+                className="h-auto flex-col gap-2 py-5 rounded-2xl apple-press"
               >
                 <span className="text-3xl">{cuisine.emoji}</span>
                 <span className="font-semibold">{cuisine.name}</span>
@@ -93,12 +93,12 @@ export function WorldRecipes() {
 
           {!isLoading && recipes.length > 0 && (
             <div className="space-y-4">
-              <h3 className="text-xl font-playfair font-semibold text-center">{selectedCuisine} Recipes</h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <h3 className="text-xl font-playfair font-semibold text-center tracking-tight">{selectedCuisine} Recipes</h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {recipes.map((recipe) => (
                   <Card
                     key={recipe.id}
-                    className="glass-effect border-blue-200/40 hover:shadow-lg transition-all cursor-pointer group"
+                    className="glass-card rounded-2xl overflow-hidden cursor-pointer group"
                     onClick={() => setSelectedRecipe(recipe)}
                   >
                     <div className="relative aspect-video overflow-hidden rounded-t-lg">

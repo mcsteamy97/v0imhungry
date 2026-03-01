@@ -3,78 +3,85 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* Updated to blue/white liquid glass theme */
+/* Apple Future Liquid Glass - Crimson Accent */
 :root {
-  --background: oklch(0.99 0.005 240); /* Pure white with subtle blue tint */
-  --foreground: oklch(0.25 0.03 240); /* Deep blue-black */
-  --card: oklch(0.98 0.01 240); /* Glass white */
-  --card-foreground: oklch(0.25 0.03 240);
-  --primary: oklch(0.55 0.18 240); /* Vibrant blue */
-  --primary-foreground: oklch(0.99 0.005 240);
-  --secondary: oklch(0.75 0.08 240); /* Light blue */
-  --secondary-foreground: oklch(0.25 0.03 240);
-  --muted: oklch(0.95 0.01 240); /* Soft white-blue */
-  --muted-foreground: oklch(0.5 0.03 240);
-  --accent: oklch(0.65 0.15 220); /* Cyan-blue accent */
-  --accent-foreground: oklch(0.99 0.005 240);
-  --glass: oklch(0.96 0.015 240 / 0.7); /* Liquid glass effect */
-  --glass-border: oklch(0.92 0.02 240 / 0.3);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.99 0.005 240);
-  --border: oklch(0.9 0.015 240 / 0.4);
-  --input: oklch(0.94 0.02 240);
-  --ring: oklch(0.55 0.18 240);
-  --chart-1: oklch(0.55 0.18 240);
-  --chart-2: oklch(0.65 0.15 220);
-  --chart-3: oklch(0.75 0.08 240);
-  --chart-4: oklch(0.45 0.2 250);
-  --chart-5: oklch(0.7 0.12 230);
+  --background: #FAFAFA;
+  --foreground: #1C1C1E;
+  --card: #FFFFFF;
+  --card-foreground: #1C1C1E;
+  --popover: #FFFFFF;
+  --popover-foreground: #1C1C1E;
+  --primary: #C41E3A;
+  --primary-foreground: #FFFFFF;
+  --secondary: #F2F2F7;
+  --secondary-foreground: #3A3A3C;
+  --muted: #F2F2F7;
+  --muted-foreground: #8E8E93;
+  --accent: #F2F2F7;
+  --accent-foreground: #1C1C1E;
+  --destructive: #FF3B30;
+  --destructive-foreground: #FFFFFF;
+  --border: #E5E5EA;
+  --input: #E5E5EA;
+  --ring: #C41E3A;
+  --chart-1: #C41E3A;
+  --chart-2: #FF6B6B;
+  --chart-3: #E5E5EA;
+  --chart-4: #8E8E93;
+  --chart-5: #3A3A3C;
   --radius: 1.5rem;
-  --sidebar: oklch(0.98 0.01 240);
-  --sidebar-foreground: oklch(0.25 0.03 240);
-  --sidebar-primary: oklch(0.55 0.18 240);
-  --sidebar-primary-foreground: oklch(0.99 0.005 240);
-  --sidebar-accent: oklch(0.95 0.01 240);
-  --sidebar-accent-foreground: oklch(0.25 0.03 240);
-  --sidebar-border: oklch(0.9 0.015 240 / 0.4);
-  --sidebar-ring: oklch(0.55 0.18 240);
+  --sidebar: #F9F9FB;
+  --sidebar-foreground: #1C1C1E;
+  --sidebar-primary: #C41E3A;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #F2F2F7;
+  --sidebar-accent-foreground: #1C1C1E;
+  --sidebar-border: #E5E5EA;
+  --sidebar-ring: #C41E3A;
+  --crimson: #C41E3A;
+  --crimson-light: #DC143C;
+  --crimson-soft: rgba(196, 30, 58, 0.08);
+  --surface-raised: #FFFFFF;
+  --surface-overlay: rgba(255, 255, 255, 0.72);
 }
 
 .dark {
-  --background: oklch(0.15 0.02 240);
-  --foreground: oklch(0.95 0.01 240);
-  --card: oklch(0.18 0.02 240);
-  --card-foreground: oklch(0.95 0.01 240);
-  --popover: oklch(0.18 0.02 240);
-  --popover-foreground: oklch(0.95 0.01 240);
-  --primary: oklch(0.65 0.15 220);
-  --primary-foreground: oklch(0.15 0.02 240);
-  --secondary: oklch(0.25 0.02 240);
-  --secondary-foreground: oklch(0.95 0.01 240);
-  --muted: oklch(0.2 0.02 240);
-  --muted-foreground: oklch(0.65 0.02 240);
-  --accent: oklch(0.55 0.18 240);
-  --accent-foreground: oklch(0.95 0.01 240);
-  --glass: oklch(0.2 0.02 240 / 0.6);
-  --glass-border: oklch(0.3 0.03 240 / 0.3);
-  --destructive: oklch(0.396 0.141 25.723);
-  --destructive-foreground: oklch(0.95 0.01 240);
-  --border: oklch(0.25 0.02 240 / 0.4);
-  --input: oklch(0.25 0.02 240);
-  --ring: oklch(0.65 0.15 220);
-  --sidebar: oklch(0.18 0.02 240);
-  --sidebar-foreground: oklch(0.95 0.01 240);
-  --sidebar-primary: oklch(0.65 0.15 220);
-  --sidebar-primary-foreground: oklch(0.15 0.02 240);
-  --sidebar-accent: oklch(0.2 0.02 240);
-  --sidebar-accent-foreground: oklch(0.95 0.01 240);
-  --sidebar-border: oklch(0.25 0.02 240 / 0.4);
-  --sidebar-ring: oklch(0.65 0.15 220);
+  --background: #000000;
+  --foreground: #F5F5F7;
+  --card: #1C1C1E;
+  --card-foreground: #F5F5F7;
+  --popover: #1C1C1E;
+  --popover-foreground: #F5F5F7;
+  --primary: #FF4D6A;
+  --primary-foreground: #FFFFFF;
+  --secondary: #2C2C2E;
+  --secondary-foreground: #F5F5F7;
+  --muted: #2C2C2E;
+  --muted-foreground: #8E8E93;
+  --accent: #2C2C2E;
+  --accent-foreground: #F5F5F7;
+  --destructive: #FF453A;
+  --destructive-foreground: #FFFFFF;
+  --border: #38383A;
+  --input: #2C2C2E;
+  --ring: #FF4D6A;
+  --sidebar: #1C1C1E;
+  --sidebar-foreground: #F5F5F7;
+  --sidebar-primary: #FF4D6A;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #2C2C2E;
+  --sidebar-accent-foreground: #F5F5F7;
+  --sidebar-border: #38383A;
+  --sidebar-ring: #FF4D6A;
+  --crimson: #FF4D6A;
+  --crimson-light: #FF6B81;
+  --crimson-soft: rgba(255, 77, 106, 0.12);
+  --surface-raised: #1C1C1E;
+  --surface-overlay: rgba(28, 28, 30, 0.72);
 }
 
 @theme inline {
-  /* Updated font variables to use Inter instead of Geist */
-  --font-sans: var(--font-inter);
+  --font-sans: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', system-ui, sans-serif;
   --font-serif: var(--font-playfair);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -90,8 +97,6 @@
   --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
-  --color-glass: var(--glass);
-  --color-glass-border: var(--glass-border);
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
   --color-border: var(--border);
@@ -102,6 +107,9 @@
   --color-chart-3: var(--chart-3);
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
+  --color-crimson: var(--crimson);
+  --color-crimson-light: var(--crimson-light);
+  --color-crimson-soft: var(--crimson-soft);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -121,64 +129,86 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
 
-/* Added liquid glass effects and blue-themed animations */
+/* Apple-style animations */
 @keyframes float {
-  0%,
-  100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
 }
 
-@keyframes pulse-glow {
-  0%,
-  100% {
-    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
-  }
-  50% {
-    box-shadow: 0 0 40px rgba(59, 130, 246, 0.6);
-  }
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse-crimson {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(196, 30, 58, 0.25); }
+  50% { box-shadow: 0 0 0 8px rgba(196, 30, 58, 0); }
 }
 
 @keyframes shimmer {
-  0% {
-    background-position: -200% center;
-  }
-  100% {
-    background-position: 200% center;
-  }
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
 }
 
 .animate-float {
-  animation: float 3s ease-in-out infinite;
+  animation: float 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .animate-pulse-glow {
-  animation: pulse-glow 2s ease-in-out infinite;
+  animation: pulse-crimson 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
+/* Apple glassmorphism */
 .glass-effect {
-  background: var(--color-glass);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--color-glass-border);
+  background: var(--surface-overlay);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 
+.glass-card {
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 4px 16px rgba(0, 0, 0, 0.04);
+  transition: box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1), transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06), 0 8px 32px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+/* Gradient text with crimson */
 .text-gradient {
-  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  background: linear-gradient(135deg, var(--crimson), var(--crimson-light));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
+/* Apple-style button press */
+.apple-press {
+  transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.2s ease;
+}
+
+.apple-press:active {
+  transform: scale(0.97);
+  opacity: 0.85;
+}
+
 .shimmer {
-  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%);
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.4) 50%, transparent 100%);
   background-size: 200% 100%;
   animation: shimmer 2s infinite;
 }

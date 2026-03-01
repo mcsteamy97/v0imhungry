@@ -118,9 +118,9 @@ export function RecipeModal({ recipe, isOpen, onClose, selectedVariation }: Reci
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto rounded-3xl">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-playfair text-romantic flex items-center gap-2">
+          <DialogTitle className="text-2xl font-playfair text-crimson flex items-center gap-2">
             <ChefHat className="h-6 w-6" />
             {recipe.title} - {getVariationTitle(selectedVariation)}
           </DialogTitle>
@@ -150,15 +150,15 @@ export function RecipeModal({ recipe, isOpen, onClose, selectedVariation }: Reci
 
               <div className="flex items-center gap-4 text-sm">
                 <div className="flex items-center gap-1">
-                  <Clock className="h-4 w-4 text-romantic" />
+                  <Clock className="h-4 w-4 text-crimson" />
                   {recipe.time}
                 </div>
                 <div className="flex items-center gap-1">
-                  <Users className="h-4 w-4 text-romantic" />
+                  <Users className="h-4 w-4 text-crimson" />
                   {recipe.servings} servings
                 </div>
                 <div className="flex items-center gap-1">
-                  <Heart className="h-4 w-4 text-romantic" />
+                  <Heart className="h-4 w-4 text-crimson" />
                   {recipe.healthScore}% healthy
                 </div>
               </div>
@@ -171,8 +171,8 @@ export function RecipeModal({ recipe, isOpen, onClose, selectedVariation }: Reci
                 ))}
               </div>
 
-              <div className="p-4 bg-romantic/5 rounded-lg border border-romantic/20">
-                <h4 className="font-semibold text-romantic mb-2">{getVariationTitle(selectedVariation)} Notes:</h4>
+              <div className="p-4 bg-crimson-soft rounded-2xl border border-crimson/10">
+                <h4 className="font-semibold text-crimson mb-2">{getVariationTitle(selectedVariation)} Notes:</h4>
                 <p className="text-sm text-muted-foreground">{recipe.variations[selectedVariation]}</p>
               </div>
             </div>
@@ -182,7 +182,7 @@ export function RecipeModal({ recipe, isOpen, onClose, selectedVariation }: Reci
           <div className="space-y-6">
             {/* Ingredients */}
             <div>
-              <h3 className="text-lg font-semibold text-romantic mb-3 flex items-center gap-2">
+              <h3 className="text-lg font-semibold text-crimson mb-3 flex items-center gap-2">
                 <Heart className="h-5 w-5" />
                 Ingredients ({getVariationTitle(selectedVariation)})
               </h3>
@@ -190,7 +190,7 @@ export function RecipeModal({ recipe, isOpen, onClose, selectedVariation }: Reci
                 <ul className="space-y-2">
                   {variationIngredients.map((ingredient, index) => (
                     <li key={index} className="flex items-start gap-2 text-sm">
-                      <span className="text-romantic mt-1">•</span>
+                      <span className="text-crimson mt-1">&bull;</span>
                       <span>{ingredient}</span>
                     </li>
                   ))}
@@ -204,7 +204,7 @@ export function RecipeModal({ recipe, isOpen, onClose, selectedVariation }: Reci
 
             {/* Instructions */}
             <div>
-              <h3 className="text-lg font-semibold text-romantic mb-3 flex items-center gap-2">
+              <h3 className="text-lg font-semibold text-crimson mb-3 flex items-center gap-2">
                 <ChefHat className="h-5 w-5" />
                 Instructions
               </h3>
@@ -212,7 +212,7 @@ export function RecipeModal({ recipe, isOpen, onClose, selectedVariation }: Reci
                 <ol className="space-y-3">
                   {variationInstructions.map((instruction, index) => (
                     <li key={index} className="flex gap-3 text-sm">
-                      <span className="flex-shrink-0 w-6 h-6 bg-romantic text-white rounded-full flex items-center justify-center text-xs font-semibold">
+                      <span className="flex-shrink-0 w-6 h-6 bg-crimson text-primary-foreground rounded-full flex items-center justify-center text-xs font-semibold">
                         {index + 1}
                       </span>
                       <span className="pt-0.5">{instruction}</span>
@@ -230,7 +230,7 @@ export function RecipeModal({ recipe, isOpen, onClose, selectedVariation }: Reci
           <Button variant="outline" onClick={onClose}>
             Close
           </Button>
-          <Button className="bg-romantic hover:bg-romantic/90">
+          <Button className="bg-crimson hover:bg-crimson/90 text-primary-foreground rounded-full apple-press">
             <Heart className="h-4 w-4 mr-2" />
             Save Recipe
           </Button>
