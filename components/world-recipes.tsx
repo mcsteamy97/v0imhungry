@@ -143,7 +143,7 @@ export function WorldRecipes() {
             healthScore: 80,
             mealTime: "Lunch/Dinner",
           }}
-          variation="standard"
+          selectedVariation="standard"
         />
       )}
     </>
