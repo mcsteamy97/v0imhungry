@@ -64,17 +64,17 @@ export function SurpriseTab() {
           onClick={fetchSurpriseMeal}
           disabled={isLoading}
           size="lg"
-          className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-8 py-6 text-lg font-semibold shadow-lg tap-scale"
+          className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-12 py-8 text-xl font-bold shadow-2xl tap-scale animate-pulse-warm hover:shadow-primary/50 transition-all duration-300"
         >
           {isLoading ? (
             <>
-              <RefreshCw className="h-5 w-5 mr-2 animate-spin" />
-              Finding...
+              <RefreshCw className="h-6 w-6 mr-3 animate-spin" />
+              <span className="text-xl">Finding...</span>
             </>
           ) : (
             <>
-              <Sparkles className="h-5 w-5 mr-2" />
-              Surprise Me
+              <Sparkles className="h-6 w-6 mr-3" />
+              <span className="text-xl tracking-wide">SURPRISE ME!</span>
             </>
           )}
         </Button>
