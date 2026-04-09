@@ -19,15 +19,19 @@ export function SurpriseTab() {
   const [measureSystem, setMeasureSystem] = useState<MeasurementSystem>("metric")
 
   const fetchSurpriseMeal = async () => {
+    console.log("[v0] Surprise Me button clicked")
     setIsLoading(true)
     try {
-      const randomMeal = await mealDBService.getRandomMeal()
+      const randomMeal = await mealDBService.getRandomDinnerMeal()
+      console.log("[v0] Random meal fetched:", randomMeal)
       if (randomMeal) {
-        setMeal(randomMeal)
+        const processedMeal = mealDBService.processRecipe(randomMeal)
+        console.log("[v0] Processed meal:", processedMeal)
+        setMeal(processedMeal)
         setIsModalOpen(true)
       }
     } catch (error) {
-      console.error("Failed to fetch surprise meal:", error)
+      console.error("[v0] Failed to fetch surprise meal:", error)
     } finally {
       setIsLoading(false)
     }
@@ -94,17 +98,31 @@ export function SurpriseTab() {
             <div className="space-y-6">
               {/* Large Finished Dish Image */}
               <div className="relative w-full h-72 md:h-80 rounded-2xl overflow-hidden">
-                <Image src={meal.image || "/placeholder.svg"} alt={`Finished dish: ${meal.name}`} fill className="object-cover" />
+                <Image 
+                  src={meal.image || "/placeholder.svg"} 
+                  alt={`Finished dish: ${meal.name}`} 
+                  fill 
+                  className="object-cover"
+                  priority
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                 <div className="absolute bottom-4 left-4 right-4">
                   <p className="text-white text-sm font-medium">This is what your finished dish will look like!</p>
                 </div>
               </div>
 
+              {/* Description */}
+              <p className="text-muted-foreground">{meal.description}</p>
+
               {/* Info Tags */}
               <div className="flex flex-wrap gap-2">
-                <Badge className="bg-terracotta-soft text-terracotta rounded-full">{meal.category}</Badge>
+                <Badge className="bg-terracotta-soft text-primary rounded-full">{meal.category}</Badge>
                 <Badge className="bg-secondary text-secondary-foreground rounded-full">{meal.cuisine} Cuisine</Badge>
+                {meal.tags?.map((tag: string) => (
+                  <Badge key={tag} variant="outline" className="text-xs rounded-full">
+                    {tag}
+                  </Badge>
+                ))}
               </div>
 
               {/* Measurement Toggle */}
