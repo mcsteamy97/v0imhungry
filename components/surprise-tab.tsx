@@ -19,19 +19,16 @@ export function SurpriseTab() {
   const [measureSystem, setMeasureSystem] = useState<MeasurementSystem>("metric")
 
   const fetchSurpriseMeal = async () => {
-    console.log("[v0] Surprise Me button clicked")
     setIsLoading(true)
     try {
       const randomMeal = await mealDBService.getRandomDinnerMeal()
-      console.log("[v0] Random meal fetched:", randomMeal)
       if (randomMeal) {
         const processedMeal = mealDBService.processRecipe(randomMeal)
-        console.log("[v0] Processed meal:", processedMeal)
         setMeal(processedMeal)
         setIsModalOpen(true)
       }
     } catch (error) {
-      console.error("[v0] Failed to fetch surprise meal:", error)
+      console.error("Failed to fetch surprise meal:", error)
     } finally {
       setIsLoading(false)
     }

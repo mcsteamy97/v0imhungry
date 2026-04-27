@@ -12,23 +12,25 @@ import { convertIngredients, convertInstructions, type MeasurementSystem } from 
 import { transformToBeginnerFriendly, getBeginnerIngredientTip } from "@/lib/beginner-instructions"
 
 interface Recipe {
-  id: number
-  title: string
+  id: number | string
+  title?: string
+  name?: string
   category: string
-  time: string
-  difficulty: string
+  time?: string
+  difficulty?: string
   image: string
-  description: string
-  tags: string[]
-  variations: {
+  description?: string
+  tags?: string[]
+  variations?: {
     standard: string
     dairyFree: string
     vegan: string
   }
-  ingredients: string[]
-  instructions: string[]
-  servings: number
-  healthScore: number
+  ingredients?: string[]
+  instructions?: string[]
+  servings?: number
+  healthScore?: number
+  cuisine?: string
 }
 
 interface RecipeModalProps {
@@ -42,6 +44,20 @@ export function RecipeModal({ recipe, isOpen, onClose, selectedVariation }: Reci
   const [measureSystem, setMeasureSystem] = useState<MeasurementSystem>("volume")
 
   if (!recipe) return null
+
+  // Handle both title and name properties
+  const recipeTitle = recipe.title || recipe.name || "Recipe"
+  const recipeTime = recipe.time || "30-45 min"
+  const recipeServings = recipe.servings || 2
+  const recipeHealthScore = recipe.healthScore || 75
+  const recipeDifficulty = recipe.difficulty || "Medium"
+  const recipeDescription = recipe.description || `A delicious ${recipe.category} dish`
+  const recipeTags = recipe.tags || [recipe.category]
+  const recipeVariations = recipe.variations || {
+    standard: "Classic preparation with traditional ingredients",
+    dairyFree: "Substitute dairy with plant-based alternatives",
+    vegan: "Replace all animal products with plant-based options"
+  }
 
   const getVariationTitle = (variation: string) => {
     switch (variation) {
@@ -122,9 +138,9 @@ export function RecipeModal({ recipe, isOpen, onClose, selectedVariation }: Reci
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto rounded-3xl">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-playfair text-crimson flex items-center gap-2">
+          <DialogTitle className="text-2xl font-playfair text-primary flex items-center gap-2">
             <ChefHat className="h-6 w-6" />
-            {recipe.title} - {getVariationTitle(selectedVariation)}
+            {recipeTitle} - {getVariationTitle(selectedVariation)}
           </DialogTitle>
         </DialogHeader>
 
@@ -132,13 +148,13 @@ export function RecipeModal({ recipe, isOpen, onClose, selectedVariation }: Reci
         <div className="relative w-full h-72 md:h-80 rounded-2xl overflow-hidden">
           <Image
             src={recipe.image || "/placeholder.svg"}
-            alt={`Finished dish: ${recipe.title}`}
+            alt={`Finished dish: ${recipeTitle}`}
             fill
             className="object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
           <div className="absolute bottom-4 left-4 right-4">
-            <Badge className="bg-primary text-primary-foreground mb-2">{recipe.difficulty}</Badge>
+            <Badge className="bg-primary text-primary-foreground mb-2">{recipeDifficulty}</Badge>
             <p className="text-white text-sm font-medium">This is what your finished dish will look like!</p>
           </div>
         </div>
@@ -147,27 +163,27 @@ export function RecipeModal({ recipe, isOpen, onClose, selectedVariation }: Reci
         <div className="flex items-center justify-between flex-wrap gap-4 p-4 bg-secondary/50 rounded-2xl">
           <div className="flex items-center gap-6 text-sm">
             <div className="flex items-center gap-2">
-              <Clock className="h-5 w-5 text-crimson" />
-              <span className="font-medium">{recipe.time}</span>
+              <Clock className="h-5 w-5 text-primary" />
+              <span className="font-medium">{recipeTime}</span>
             </div>
             <div className="flex items-center gap-2">
-              <Users className="h-5 w-5 text-crimson" />
-              <span className="font-medium">{recipe.servings} servings</span>
+              <Users className="h-5 w-5 text-primary" />
+              <span className="font-medium">{recipeServings} servings</span>
             </div>
             <div className="flex items-center gap-2">
-              <Heart className="h-5 w-5 text-crimson" />
-              <span className="font-medium">{recipe.healthScore}% healthy</span>
+              <Heart className="h-5 w-5 text-primary" />
+              <span className="font-medium">{recipeHealthScore}% healthy</span>
             </div>
           </div>
           <MeasurementToggle system={measureSystem} onToggle={setMeasureSystem} />
         </div>
 
         {/* Description */}
-        <p className="text-muted-foreground leading-relaxed">{recipe.description}</p>
+        <p className="text-muted-foreground leading-relaxed">{recipeDescription}</p>
 
         {/* Tags */}
         <div className="flex flex-wrap gap-2">
-          {recipe.tags.map((tag) => (
+          {recipeTags.map((tag) => (
             <Badge key={tag} variant="secondary" className="text-xs">
               {tag}
             </Badge>
@@ -175,12 +191,12 @@ export function RecipeModal({ recipe, isOpen, onClose, selectedVariation }: Reci
         </div>
 
         {/* Variation Notes */}
-        <div className="p-4 bg-crimson-soft rounded-2xl border border-crimson/10">
-          <h4 className="font-semibold text-crimson mb-2 flex items-center gap-2">
+        <div className="p-4 bg-primary/5 rounded-2xl border border-primary/10">
+          <h4 className="font-semibold text-primary mb-2 flex items-center gap-2">
             <Info className="h-4 w-4" />
             {getVariationTitle(selectedVariation)} Version Notes
           </h4>
-          <p className="text-sm text-muted-foreground">{recipe.variations[selectedVariation]}</p>
+          <p className="text-sm text-muted-foreground">{recipeVariations[selectedVariation]}</p>
         </div>
 
         <Separator />
@@ -188,7 +204,7 @@ export function RecipeModal({ recipe, isOpen, onClose, selectedVariation }: Reci
         <div className="grid md:grid-cols-2 gap-8">
           {/* Ingredients */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-crimson flex items-center gap-2">
+            <h3 className="text-lg font-semibold text-primary flex items-center gap-2">
               <Heart className="h-5 w-5" />
               What You'll Need
             </h3>
@@ -200,7 +216,7 @@ export function RecipeModal({ recipe, isOpen, onClose, selectedVariation }: Reci
                   return (
                     <li key={index} className="space-y-1">
                       <div className="flex items-start gap-3">
-                        <span className="flex-shrink-0 w-6 h-6 rounded-lg bg-crimson/10 text-crimson flex items-center justify-center text-xs font-medium">
+                        <span className="flex-shrink-0 w-6 h-6 rounded-lg bg-primary/10 text-primary flex items-center justify-center text-xs font-medium">
                           {index + 1}
                         </span>
                         <span className="font-medium text-sm">{ingredient}</span>
@@ -222,7 +238,7 @@ export function RecipeModal({ recipe, isOpen, onClose, selectedVariation }: Reci
 
           {/* Step-by-Step Instructions */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-crimson flex items-center gap-2">
+            <h3 className="text-lg font-semibold text-primary flex items-center gap-2">
               <ChefHat className="h-5 w-5" />
               Step-by-Step Instructions
             </h3>
@@ -233,7 +249,7 @@ export function RecipeModal({ recipe, isOpen, onClose, selectedVariation }: Reci
                   <li key={step.stepNumber} className="space-y-2">
                     {/* Main instruction */}
                     <div className="flex gap-3">
-                      <span className="flex-shrink-0 w-8 h-8 bg-crimson text-primary-foreground rounded-full flex items-center justify-center text-sm font-bold">
+                      <span className="flex-shrink-0 w-8 h-8 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-sm font-bold">
                         {step.stepNumber}
                       </span>
                       <p className="pt-1 text-sm leading-relaxed">{step.instruction}</p>
@@ -242,7 +258,7 @@ export function RecipeModal({ recipe, isOpen, onClose, selectedVariation }: Reci
                     {/* Timing badge */}
                     {step.timing && (
                       <div className="ml-11 inline-flex items-center gap-1.5 text-xs bg-secondary px-2.5 py-1 rounded-full">
-                        <Timer className="h-3 w-3 text-crimson" />
+                        <Timer className="h-3 w-3 text-primary" />
                         <span className="font-medium">{step.timing}</span>
                       </div>
                     )}
@@ -275,7 +291,7 @@ export function RecipeModal({ recipe, isOpen, onClose, selectedVariation }: Reci
           <Button variant="outline" onClick={onClose}>
             Close
           </Button>
-          <Button className="bg-crimson hover:bg-crimson/90 text-primary-foreground rounded-full apple-press">
+          <Button className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full tap-scale">
             <Heart className="h-4 w-4 mr-2" />
             Save Recipe
           </Button>

@@ -33,8 +33,10 @@ export function WorldTab() {
     setSelectedCuisine(cuisine)
     setIsLoading(true)
     try {
-      const meals = await mealDBService.getMealsByCuisine(cuisine)
-      setRecipes(meals)
+      const meals = await mealDBService.getRecipesByCuisine(cuisine, 9)
+      // Convert to processed format for RecipeModal
+      const processedMeals = meals.map(meal => mealDBService.convertToProcessedRecipe(meal))
+      setRecipes(processedMeals)
     } catch (error) {
       console.error("Failed to fetch meals:", error)
       setRecipes([])
@@ -108,13 +110,13 @@ export function WorldTab() {
                 <div className="relative h-48">
                   <Image
                     src={recipe.image || "/placeholder.svg"}
-                    alt={recipe.name}
+                    alt={recipe.title || recipe.name}
                     fill
                     className="object-cover"
                   />
                 </div>
                 <div className="p-4">
-                  <h4 className="font-semibold text-sm line-clamp-2">{recipe.name}</h4>
+                  <h4 className="font-semibold text-sm line-clamp-2">{recipe.title || recipe.name}</h4>
                   <p className="text-xs text-muted-foreground mt-1">{recipe.category}</p>
                 </div>
               </Card>

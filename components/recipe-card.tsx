@@ -8,15 +8,16 @@ import Image from "next/image"
 import { useBookmarks } from "@/lib/bookmarks-context"
 
 interface Recipe {
-  id: number
-  title: string
+  id: number | string
+  title?: string
+  name?: string
   category: string
-  time: string
-  difficulty: string
+  time?: string
+  difficulty?: string
   image: string
-  description: string
-  tags: string[]
-  variations: {
+  description?: string
+  tags?: string[]
+  variations?: {
     standard: string
     dairyFree: string
     vegan: string
@@ -37,6 +38,12 @@ export function RecipeCard({ recipe, onRecipeSelect }: RecipeCardProps) {
   const { isBookmarked, toggleBookmark } = useBookmarks()
   const bookmarked = isBookmarked(recipe.id.toString())
 
+  // Normalize properties
+  const title = recipe.title || recipe.name || "Recipe"
+  const time = recipe.time || "30-45 min"
+  const difficulty = recipe.difficulty || "Medium"
+  const description = recipe.description || `A delicious ${recipe.category} dish`
+
   const handleBookmark = (e: React.MouseEvent) => {
     e.stopPropagation()
     toggleBookmark(recipe.id.toString())
@@ -50,7 +57,7 @@ export function RecipeCard({ recipe, onRecipeSelect }: RecipeCardProps) {
       <div className="relative h-48">
         <Image
           src={recipe.image || "/placeholder.svg"}
-          alt={recipe.title}
+          alt={title}
           fill
           className="object-cover"
           loading="lazy"
@@ -67,21 +74,21 @@ export function RecipeCard({ recipe, onRecipeSelect }: RecipeCardProps) {
           />
         </button>
         <Badge className="absolute bottom-3 left-3 bg-primary/90 text-primary-foreground backdrop-blur-sm">
-          {recipe.difficulty}
+          {difficulty}
         </Badge>
       </div>
 
       <div className="p-4 space-y-2">
         <h4 className="font-playfair font-semibold text-base line-clamp-2 leading-tight">
-          {recipe.title}
+          {title}
         </h4>
         <p className="text-xs text-muted-foreground line-clamp-2">
-          {recipe.description}
+          {description}
         </p>
         <div className="flex items-center gap-3 text-xs text-muted-foreground">
           <div className="flex items-center gap-1">
             <Clock className="h-3.5 w-3.5" />
-            {recipe.time}
+            {time}
           </div>
           <div className="flex items-center gap-1">
             <Heart className="h-3.5 w-3.5" />
