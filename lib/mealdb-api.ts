@@ -404,3 +404,4 @@ class MealDBAPIService {
 }
 
 export const mealDBAPI = new MealDBAPIService()
+export const mealDBService = mealDBAPI

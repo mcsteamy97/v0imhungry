@@ -1,15 +1,10 @@
 import type React from "react"
-import type { Metadata } from "next"
-import { Playfair_Display, Inter } from "next/font/google"
+import type { Metadata, Viewport } from "next"
+import { Playfair_Display } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { Suspense } from "react"
+import { BookmarksProvider } from "@/lib/bookmarks-context"
 import "./globals.css"
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-})
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -18,9 +13,17 @@ const playfair = Playfair_Display({
 })
 
 export const metadata: Metadata = {
-  title: "I'm Hungry - Discover Your Perfect Meal",
-  description: "Find the perfect meal based on your mood with AI-powered recipe recommendations",
+  title: "HUNGRY - Discover Your Perfect Meal",
+  description: "A warm editorial food magazine meets modern mobile app. Find perfect meals based on your mood.",
   generator: "v0.app",
+}
+
+export const viewport: Viewport = {
+  themeColor: "#D97757",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
 }
 
 export default function RootLayout({
@@ -29,9 +32,11 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
-      <body className={`font-sans ${inter.variable} ${playfair.variable}`}>
-        <Suspense fallback={null}>{children}</Suspense>
+    <html lang="en" className="overflow-x-hidden">
+      <body className={`font-sans ${playfair.variable} antialiased overflow-x-hidden`}>
+        <BookmarksProvider>
+          <Suspense fallback={null}>{children}</Suspense>
+        </BookmarksProvider>
         <Analytics />
       </body>
     </html>
